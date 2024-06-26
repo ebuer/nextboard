@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { languages } from "@/i18n/settings";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export async function generateStaticParams() {
+  return languages.map((lng) => ({ lng }))
+}
 
 export const metadata: Metadata = {
   title: "Nextboard",
@@ -11,11 +16,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params: {
+    lng
+  }
 }: Readonly<{
   children: React.ReactNode;
+  params: {
+    lng: string;
+  };
 }>) {
   return (
-    <html lang="en">
+    <html lang={lng}>
       <body className={inter.className}>
         <main>
           {children}
