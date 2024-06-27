@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { languages } from "@/i18n/settings";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -27,8 +27,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={lng}>
-      <body className={inter.className}>
-        <main>
+      <body suppressHydrationWarning={true} className={inter.className}>
+        <main className="w-full min-h-screen">
           {children}
         </main>
       </body>

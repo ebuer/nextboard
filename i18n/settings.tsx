@@ -5,7 +5,7 @@ export const defaultNS = 'global'
 export const cookieName = 'i18next'
 
 
-export function getOptions(lng: string, ns: string | string[]): InitOptions {
+export function getOptions(lng: string = fallbackLng, ns: string = defaultNS): InitOptions {
     return {
         // debug: true,
         supportedLngs: languages,
