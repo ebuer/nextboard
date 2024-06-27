@@ -3,10 +3,7 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { useClientTranslation, currentLng } from '@/i18n/client'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-
-import { languages } from '@/i18n/settings'
-import { Trans } from 'react-i18next/TransWithoutContext'
-import Link from 'next/link'
+import LanguageSwitcher from '@/components/language-switcher'
 
 const navigation = [
     { i18nPath: "menu_1", href: '#' },
@@ -50,29 +47,13 @@ const HeaderLanding: React.FC<{ lang: string }> = ({ lang }) => {
                 </div>
                 <div className="hidden lg:flex">
 
-
-                    {/*
-                    <Trans i18nKey="languageSwitcher" t={t_header}>
-                        {/* @ts-ignore
-                        Switch from <strong>{{ lang }}</strong> to: {' '}
-                    </Trans>
-                     {languages.filter((l) => lang !== l).map((l, index) => {
-                        return (
-                            <span className='ml-1 mr-1' key={l}>
-                                {index > 0 && (' or ')}
-                                <Link href={`/${l}/`}>
-                                    {l}
-                                </Link>
-                            </span>
-                        )
-                    })} */}
-
-                    {/* <b>TODO - github link - language switch select</b> */}
+                    <LanguageSwitcher lang={lang} />
 
 
 
-                    <a href="#" className="ml-2 text-sm font-semibold leading-6 text-gray-900">
-                        Log in <span aria-hidden="true">&rarr;</span>
+                    <a target='_blank' href="https://github.com/ebuer/Nextboard" className="ml-3 text-sm font-semibold leading-6 text-gray-900 flex justify-center items-center">
+                        <img className='mr-1 w-8' src="/assets/icons/github.svg" alt="" />
+                        {/* View on GitHub <span aria-hidden="true">&rarr;</span> */}
                     </a>
                 </div>
             </nav>

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useServerTranslation } from '@/i18n/server';
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import { ChatBubbleOvalLeftEllipsisIcon, HeartIcon, PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
@@ -38,7 +39,7 @@ const features = [
 const Home: React.FC<{ params: Params }> = async ({ params: { lng } }) => {
 
   const { t: t_global } = await useServerTranslation(lng, 'global')
-  const { t: t_test } = await useServerTranslation(lng, 'landing/home')
+  const { t: t_home } = await useServerTranslation(lng, 'landing/home')
 
   return (
     <div className="relative isolate overflow-hidden bg-white">
@@ -80,22 +81,20 @@ const Home: React.FC<{ params: Params }> = async ({ params: { lng } }) => {
             </a>
           </div>
           <h1 className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Get Started with <br />
-            {/* e-Dashboard */}
-            Nextboard
+            {t_home('title')}
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
             Welcome to e-Dashboard, your intuitive workspace powered by Next.js. Explore a seamless experience with built-in i18n for multi-language support, and enjoy sleek UI elements crafted with Tailwind CSS and Tailwind UI.
           </p>
           <div className="mt-10 flex items-center gap-x-6">
-            <a
-              href="#"
+            <Link
+              href={`/${lng}/dashboard`}
               className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Demo
-            </a>
-            <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-              Learn more <span aria-hidden="true">→</span>
+            </Link>
+            <a target='_blank' href="https://github.com/ebuer/Nextboard" className="text-sm font-semibold leading-6 text-gray-900">
+              {t_global('view-on-github')} <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>
