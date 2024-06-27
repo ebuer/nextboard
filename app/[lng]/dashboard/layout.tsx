@@ -288,6 +288,10 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, params: { l
                                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                                 </button>
 
+                                <div className="lg:hidden">
+                                    <LanguageSwitcher lang={lng} />
+                                </div>
+
                                 <div className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200" aria-hidden="true" />
 
                                 <Menu as="div" className="relative">
