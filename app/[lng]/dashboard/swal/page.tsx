@@ -113,6 +113,37 @@ const SwalPage: React.FC = () => {
 
 
             <Card className="mt-3">
+                <pre>
+                    <code className="language-jsx">
+                        {`
+const Example = ({ prop }) => {
+
+    const [open, setOpen] = useState<boolean>(false)
+
+    return (
+        <Swal
+        open={open}
+        type={"success' | 'error' | 'warning' | 'info' | 'confirm"}
+        onClose={() => setOpen(false)}
+        onCancel={() => alert('Cancel')}
+        onConfirm={() => alert('Confirm')}
+        title="Lorem Ipsum"
+        text="Le Lorem Ipsum est le faux texte standard"
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        closeBtnText="Close"
+    />
+    );
+};
+
+export default Example;
+                        `}
+                    </code>
+                </pre>
+            </Card>
+
+
+            <Card className="mt-3">
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
                         <h1 className="text-base font-semibold leading-6 text-gray-900">Props</h1>
