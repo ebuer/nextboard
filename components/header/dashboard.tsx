@@ -5,6 +5,7 @@ import Link from "next/link"
 import LanguageSwitcher from "@/components/language-switcher"
 import { clsx } from "clsx"
 import { INavigation, INavigationItem } from "@/interfaces/navigation.interfaces"
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 
 import {
     Dialog,
@@ -22,7 +23,7 @@ import {
     Cog6ToothIcon,
     XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon, MagnifyingGlassIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 
 
 
@@ -72,24 +73,65 @@ const HeaderDashboard: React.FC<HeaderDashboardProps> = ({ lang, navigation }) =
                                         <ul role="list" className="-mx-2 space-y-1">
                                             {navigation.main.map((item: INavigationItem) => (
                                                 <li key={item.name}>
-                                                    <a
-                                                        href={item.href}
-                                                        className={clsx(
-                                                            item.current
-                                                                ? 'bg-gray-50 text-indigo-600'
-                                                                : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600',
-                                                            'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
-                                                        )}
-                                                    >
-                                                        <item.icon
+                                                    {!item.children ? (
+                                                        <a
+                                                            href={item.href}
                                                             className={clsx(
-                                                                item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
-                                                                'h-6 w-6 shrink-0',
+                                                                item.current
+                                                                    ? 'bg-gray-50 text-indigo-600'
+                                                                    : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600',
+                                                                'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
                                                             )}
-                                                            aria-hidden="true"
-                                                        />
-                                                        {item.name}
-                                                    </a>
+                                                        >
+                                                            <item.icon
+                                                                className={clsx(
+                                                                    item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+                                                                    'h-6 w-6 shrink-0',
+                                                                )}
+                                                                aria-hidden={true}
+                                                            />
+                                                            {item.name}
+                                                        </a>
+                                                    ) : (
+                                                        <Disclosure as="div">
+                                                            {({ open }) => (
+                                                                <>
+                                                                    <DisclosureButton
+                                                                        className={clsx(
+                                                                            item.current ? 'text-indigo-600 bg-gray-50' : 'hover:bg-gray-50 hover:text-indigo-600',
+                                                                            'group flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm font-semibold leading-6 text-gray-700',
+                                                                        )}
+                                                                    >
+                                                                        <item.icon className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600" aria-hidden="true" />
+                                                                        {item.name}
+                                                                        <ChevronRightIcon
+                                                                            className={clsx(
+                                                                                open ? 'rotate-90 text-gray-500' : 'text-gray-400',
+                                                                                'ml-auto h-5 w-5 shrink-0',
+                                                                            )}
+                                                                            aria-hidden="true"
+                                                                        />
+                                                                    </DisclosureButton>
+                                                                    <DisclosurePanel as="ul" className="mt-1 px-2">
+                                                                        {item.children && item.children.map((subItem) => (
+                                                                            <li key={subItem.name}>
+                                                                                <DisclosureButton
+                                                                                    as="a"
+                                                                                    href={subItem.href}
+                                                                                    className={clsx(
+                                                                                        subItem.current ? 'bg-gray-50' : 'hover:bg-gray-50',
+                                                                                        'block rounded-md py-2 pl-9 pr-2 text-sm leading-6 text-gray-700',
+                                                                                    )}
+                                                                                >
+                                                                                    {subItem.name}
+                                                                                </DisclosureButton>
+                                                                            </li>
+                                                                        ))}
+                                                                    </DisclosurePanel>
+                                                                </>
+                                                            )}
+                                                        </Disclosure>
+                                                    )}
                                                 </li>
                                             ))}
                                         </ul>
