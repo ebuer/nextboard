@@ -1,8 +1,9 @@
 "use client"
 import { ReactNode } from "react"
-
+import AppProvider from "@/providers"
 import { HeaderDashboard } from "@/components/header"
 import Sidebar from "@/components/sidebar"
+
 
 import {
     CalendarIcon,
@@ -25,17 +26,25 @@ const navigation: INavigation = {
         },
         { name: 'Team', href: '#', icon: UsersIcon, current: false },
         {
-            name: 'Projects', href: '#', icon: FolderIcon, current: false,
+            name: 'Ui Components', href: '#', icon: FolderIcon, current: false,
             children: [
-                { name: 'GraphQL API', href: '#' },
-                { name: 'iOS App', href: '#' },
-                { name: 'Android App', href: '#' },
-                { name: 'New Customer Portal', href: '#' },
+                { name: 'Container', href: '#' },
+                { name: 'Button', href: '#' },
+                { name: 'Tag', href: '#' },
+                { name: 'Skeleton', href: '#' },
+                { name: 'Loader', href: '#' },
+                { name: 'Calendar', href: '#' },
             ],
         },
-        { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-        { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-        { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+        {
+            name: 'Table', href: '#', icon: CalendarIcon, current: false,
+            children: [
+                { name: 'Simple Table', href: '#' },
+                { name: 'Data Table', href: '#' },
+            ]
+        },
+        { name: 'Swal', href: '#', icon: DocumentDuplicateIcon, current: false },
+        { name: 'Notify', href: '#', icon: ChartPieIcon, current: false },
     ],
     sub: [
         { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
@@ -60,9 +69,8 @@ interface DashboardLayoutProps {
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, params: { lng } }) => {
 
     return (
-        <>
+        <AppProvider lang={lng}>
             <div className="h-full bg-white">
-
                 <Sidebar
                     lang={lng}
                     navigation={navigation} />
@@ -79,10 +87,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, params: { l
                         </div>
                     </main>
                 </div>
-
-
             </div>
-        </>
+        </AppProvider>
     );
 }
 

@@ -7,7 +7,6 @@ interface GlobalState {
 
 const initialState: GlobalState = {
     loading: false,
-
 }
 
 const globalSlice = createSlice({
@@ -16,7 +15,7 @@ const globalSlice = createSlice({
     reducers: {
         setLoader: (state, action) => {
             state.loading = action.payload
-        }
+        },
     }
 })
 

@@ -1,7 +1,7 @@
 "use client"
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
-import { useClientTranslation, currentLng } from '@/i18n/client'
+import { useClientTranslation } from '@/i18n/client'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import LanguageSwitcher from '@/components/language-switcher'
 

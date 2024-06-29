@@ -6,9 +6,10 @@ import ClientProvider from './client';
 interface AppProviderProps {
     children: ReactNode;
     ssr?: boolean;
+    lang: string;
 }
 
-const AppProvider: React.FC<AppProviderProps> = ({ children, ssr }) => {
+const AppProvider: React.FC<AppProviderProps> = ({ children, ssr, lang }) => {
     return (
         <>
             {
@@ -17,7 +18,7 @@ const AppProvider: React.FC<AppProviderProps> = ({ children, ssr }) => {
                         {children}
                     </ServerProvider >
                     :
-                    <ClientProvider>
+                    <ClientProvider lang={lang}>
                         {children}
                     </ClientProvider>
             }

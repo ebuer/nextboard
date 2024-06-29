@@ -24,6 +24,13 @@ i18next
     })
 
 
+i18next.on('languageChanged', (lng) => {
+    console.log('on change', lng)
+});
+
+
+export { i18next as i18nextInstance }
+
 export function useClientTranslation(lng: string, ns: string, options = {}) {
     const [cookies, setCookie] = useCookies([cookieName])
 
@@ -52,10 +59,4 @@ export function useClientTranslation(lng: string, ns: string, options = {}) {
         }, [lng, cookies.i18next])
     }
     return ret
-}
-
-
-export function currentLng() {
-    const [cookies, setCookie] = useCookies([cookieName])
-    return cookies.i18next
 }
