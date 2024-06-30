@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
-import { Swal } from "@/components/alerts"
-import { SwalTypes } from "@/interfaces/swal.interfaces"
+import { Notify } from "@/components/alerts"
+import { NotifyTypes } from "@/interfaces/notify.interfaces"
 import { useLanguage } from "@/context/language"
 import { Card } from "@/components/ui"
 
@@ -9,41 +9,29 @@ import { Card } from "@/components/ui"
 const propsList = [
     {
         title: "open",
-        desc: "Controls the visibility of the Swal modal. Expected type: boolean."
+        desc: "Boolean value to control the visibility of the notification. Default is `false`."
     },
     {
         title: "type",
-        desc: "Specifies the type of Swal (success, error, info, warning, confirm). Expected type: string."
-    },
-    {
-        title: "title",
-        desc: "Title of the Swal modal. Expected type: string."
+        desc: "Specifies the type of notification. Possible values are `info`, `success`, `error`, and `warning`. Default is `info`."
     },
     {
         title: "text",
-        desc: "Text content of the Swal modal. Expected type: string."
+        desc: "Text message to display in the notification."
     },
     {
         title: "onClose",
-        desc: "Callback function triggered when the Swal modal is closed. Expected type: function."
-    },
-    {
-        title: "onCancel",
-        desc: "Callback function triggered when the cancel button is clicked (only for confirm type). Expected type: function."
-    },
-    {
-        title: "onConfirm",
-        desc: "Callback function triggered when the confirm button is clicked (only for confirm type). Expected type: function."
+        desc: "Callback function to handle the notification close event."
     }
 ];
 
-const SwalPage: React.FC = () => {
+const NotifyPage: React.FC = () => {
 
     const { language } = useLanguage()
     const [open, setOpen] = useState<boolean>(false)
-    const [type, setType] = useState<SwalTypes>("info")
+    const [type, setType] = useState<NotifyTypes>("info")
 
-    const handleClick = (typeStr: SwalTypes) => {
+    const handleClick = (typeStr: NotifyTypes) => {
         if (typeStr) {
             setType(typeStr)
             setTimeout(() => {
@@ -58,9 +46,10 @@ const SwalPage: React.FC = () => {
             <Card className="mt-3">
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
-                        <h1 className="text-base font-semibold leading-6 text-gray-900"><b>Swal</b> Component</h1>
+                        <h1 className="text-base font-semibold leading-6 text-gray-900"><b>Notify</b> Component</h1>
                         <p className="mt-2 text-sm text-gray-700">
-                            The <code>Swal</code> component provides customizable alert modals for displaying success, error, info, warning messages, and confirmation dialogs. It is designed to be simple to integrate and highly customizable using props.
+                            The <code>Notify</code> component is used to display notifications in your application.
+                            It supports different types of notifications such as info, success,
                         </p>
                     </div>
                 </div>
@@ -74,7 +63,7 @@ const SwalPage: React.FC = () => {
                                         onClick={() => handleClick("info")}
                                         className="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
                                     >
-                                        Info
+                                        Info {language}
                                     </button>
                                     <button
                                         type="button"
@@ -93,16 +82,9 @@ const SwalPage: React.FC = () => {
                                     <button
                                         type="button"
                                         onClick={() => handleClick("error")}
-                                        className="relative -ml-px inline-flex items-center bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
-                                    >
-                                        Error
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={() => handleClick("confirm")}
                                         className="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
                                     >
-                                        Confirm
+                                        Error
                                     </button>
                                 </span>
                             </div>
@@ -121,17 +103,11 @@ const Example = ({ prop }) => {
     const [open, setOpen] = useState<boolean>(false)
 
     return (
-        <Swal
+        <Notify
         open={open}
-        type={"success' | 'error' | 'warning' | 'info' | 'confirm"}
+        type={type}
         onClose={() => setOpen(false)}
-        onCancel={() => alert('Cancel')}
-        onConfirm={() => alert('Confirm')}
-        title="Lorem Ipsum"
         text="Le Lorem Ipsum est le faux texte standard"
-        confirmBtnText="Confirm"
-        cancelBtnText="Cancel"
-        closeBtnText="Close"
     />
     );
 };
@@ -148,7 +124,7 @@ export default Example;
                     <div className="sm:flex-auto">
                         <h1 className="text-base font-semibold leading-6 text-gray-900">Props</h1>
                         <p className="mt-2 text-sm text-gray-700">
-                            The <b>Swal</b> component accepts the following props:
+                            The <b>Notify</b> component accepts the following props:
                         </p>
                     </div>
                 </div>
@@ -186,20 +162,14 @@ export default Example;
 
 
 
-            <Swal
+            <Notify
                 open={open}
                 type={type}
                 onClose={() => setOpen(false)}
-                onCancel={() => alert('Cancel')}
-                onConfirm={() => alert('Confirm')}
-                title="Lorem Ipsum"
                 text="Le Lorem Ipsum est le faux texte standard"
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
-                closeBtnText="Close"
             />
         </>
     )
 }
 
-export default SwalPage
+export default NotifyPage

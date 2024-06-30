@@ -6,6 +6,7 @@ export interface INavigationItem {
     icon?: any;
     initial?: string;
     children?: INavigationItem[];
+    prefix?: string;
 }
 
 export interface INavigation {

@@ -19,12 +19,13 @@ import { INavigation } from "@/interfaces/navigation.interfaces"
 const navigation: INavigation = {
     main: [
         {
-            name: 'Dashboard',
-            href: '#',
+            name: 'Basics',
+            href: '/dashboard',
             icon: HomeIcon,
             current: true
         },
-        { name: 'Team', href: '#', icon: UsersIcon, current: false },
+        { name: 'i18n(Language)', href: '/dashboard/language', icon: UsersIcon, current: false },
+        { name: 'Form Builder', href: '/dashboard/form', icon: UsersIcon, current: false },
         {
             name: 'Ui Components', href: '#', icon: FolderIcon, current: false,
             children: [
@@ -37,14 +38,18 @@ const navigation: INavigation = {
             ],
         },
         {
-            name: 'Table', href: '#', icon: CalendarIcon, current: false,
+            name: 'Table', href: '#', prefix: "/dashboard/table", icon: CalendarIcon, current: false,
             children: [
-                { name: 'Simple Table', href: '#' },
-                { name: 'Data Table', href: '#' },
+                { name: 'Simple Table', href: '/simple-table' },
+                { name: 'Data Table', href: '/data-table' },
             ]
         },
-        { name: 'Swal', href: '#', icon: DocumentDuplicateIcon, current: false },
-        { name: 'Notify', href: '#', icon: ChartPieIcon, current: false },
+        {
+            name: 'Alerts', href: '#', prefix: "/dashboard", icon: DocumentDuplicateIcon, current: false, children: [
+                { name: 'Swal', href: '/swal' },
+                { name: 'Notify', href: '/notify' },
+            ],
+        },
     ],
     sub: [
         { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },

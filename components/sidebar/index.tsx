@@ -34,8 +34,8 @@ const Sidebar: React.FC<SidebarProps> = ({ lang, navigation }) => {
                                     <li key={item.name}>
 
                                         {!item.children ? (
-                                            <a
-                                                href={item.href}
+                                            <Link
+                                                href={`/${lang}${item.href}`}
                                                 className={clsx(
                                                     item.current
                                                         ? 'bg-gray-50 text-indigo-600'
@@ -51,7 +51,7 @@ const Sidebar: React.FC<SidebarProps> = ({ lang, navigation }) => {
                                                     aria-hidden={true}
                                                 />
                                                 {item.name}
-                                            </a>
+                                            </Link>
                                         ) : (
                                             <Disclosure as="div">
                                                 {({ open }) => (
@@ -75,16 +75,14 @@ const Sidebar: React.FC<SidebarProps> = ({ lang, navigation }) => {
                                                         <DisclosurePanel as="ul" className="mt-1 px-2">
                                                             {item.children && item.children.map((subItem) => (
                                                                 <li key={subItem.name}>
-                                                                    <DisclosureButton
-                                                                        as="a"
-                                                                        href={subItem.href}
+                                                                    <Link
+                                                                        href={`/${lang}${item.prefix ? item.prefix : ""}${subItem.href}`}
                                                                         className={clsx(
                                                                             subItem.current ? 'bg-gray-50' : 'hover:bg-gray-50',
                                                                             'block rounded-md py-2 pl-9 pr-2 text-sm leading-6 text-gray-700',
-                                                                        )}
-                                                                    >
+                                                                        )}>
                                                                         {subItem.name}
-                                                                    </DisclosureButton>
+                                                                    </Link>
                                                                 </li>
                                                             ))}
                                                         </DisclosurePanel>
