@@ -116,6 +116,8 @@ const SwalPage: React.FC = () => {
                 <pre>
                     <code className="language-jsx">
                         {`
+import { Swal } from "@/components/alerts"
+
 const Example = ({ prop }) => {
 
     const [open, setOpen] = useState<boolean>(false)

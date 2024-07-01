@@ -98,6 +98,8 @@ const NotifyPage: React.FC = () => {
                 <pre>
                     <code className="language-jsx">
                         {`
+import { Notify } from "@/components/alerts"
+
 const Example = ({ prop }) => {
 
     const [open, setOpen] = useState<boolean>(false)

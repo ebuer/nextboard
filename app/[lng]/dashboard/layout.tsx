@@ -27,9 +27,9 @@ const navigation: INavigation = {
         { name: 'i18n(Language)', href: '/dashboard/language', icon: UsersIcon, current: false },
         { name: 'Form Builder', href: '/dashboard/form', icon: UsersIcon, current: false },
         {
-            name: 'Ui Components', href: '#', icon: FolderIcon, current: false,
+            name: 'Ui Components', href: '#', prefix: "/dashboard/ui", icon: FolderIcon, current: false,
             children: [
-                { name: 'Container', href: '#' },
+                { name: 'Container', href: '/container' },
                 { name: 'Button', href: '#' },
                 { name: 'Tag', href: '#' },
                 { name: 'Skeleton', href: '#' },
